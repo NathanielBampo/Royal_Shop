@@ -22,8 +22,15 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
   database: royal_size_development
+  pool: 5
+
+production:
+  adapter: postgresql
+  prepared_statements: false
+  advisory_locks: false
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
